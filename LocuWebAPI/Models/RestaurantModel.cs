@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+//Object
 namespace LocuWebAPI.Models
 {
     public class RestaurantModel

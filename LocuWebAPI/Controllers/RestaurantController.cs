@@ -7,14 +7,17 @@ using System.Net.Http;
 using System.Web.Http;
 using LocuWebAPI.Models;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace LocuWebAPI.Controllers
 {
     public class RestuarantController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public object Get()
         {
+
+            List<LocuWebAPI.Models.Object> a = new List<LocuWebAPI.Models.Object>();
 
             using (var w = new WebClient())
             {
@@ -22,23 +25,42 @@ namespace LocuWebAPI.Controllers
                 // attempt to download JSON data as a string
                 try
                 {
-                    json_data = w.DownloadString("http://api.locu.com/v1_0/venue/search/?country=Australia&locality=Brisbane&api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
+                    json_data = w.DownloadString("https://api.locu.com/v1_0/venue/search/?has_menu=True&country=Australia&Locality=QLD&api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
                 }
                 catch (Exception) { }
 
                 var data = JObject.Parse(json_data)["objects"];
 
-                var a = JsonConvert.DeserializeObject<List<LocuWebAPI.Models.Object>>(data.ToString());
+                a = JsonConvert.DeserializeObject<List<LocuWebAPI.Models.Object>>(data.ToString());
            
             }
 
-            return new string[] { "value1", "value2" };
+            return a;
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public object Get(string id)
         {
-            return "value";
+            List<LocuWebAPI.Models.VenueDetails.Object> a = new List<LocuWebAPI.Models.VenueDetails.Object>();
+
+            using (var w = new WebClient())
+            {
+                var json_data = string.Empty;
+                // attempt to download JSON data as a string
+                try
+                {
+                    json_data = w.DownloadString("http://api.locu.com/v1_0/venue/c1d4d69a937e72b1d365/?api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
+                }
+
+                catch (Exception) { }
+
+                var data = JObject.Parse(json_data)["objects"];
+ 
+                a = JsonConvert.DeserializeObject<List<LocuWebAPI.Models.VenueDetails.Object>>(data.ToString());
+
+            }
+
+            return a;
         }
 
         // POST api/values
