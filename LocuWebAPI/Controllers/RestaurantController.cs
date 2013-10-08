@@ -49,7 +49,7 @@ namespace LocuWebAPI.Controllers
                 // attempt to download JSON data as a string
                 try
                 {
-                    json_data = w.DownloadString("http://api.locu.com/v1_0/venue/c1d4d69a937e72b1d365/?api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
+                    json_data = w.DownloadString("http://api.locu.com/v1_0/venue/"+id+"/?api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
                 }
 
                 catch (Exception) { }
