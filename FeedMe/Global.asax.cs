@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.AspNet.SignalR;
 
 namespace FeedMe
 {
@@ -14,6 +15,7 @@ namespace FeedMe
     {
         protected void Application_Start()
         {
+            RouteTable.Routes.MapHubs();
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
