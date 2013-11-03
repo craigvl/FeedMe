@@ -25,9 +25,9 @@ namespace LocuWebAPI.Controllers
                 // attempt to download JSON data as a string
                 try
                 {
-                    json_data = w.DownloadString("https://api.locu.com/v1_0/venue/search/?has_menu=True&country=Australia&Locality=QLD&api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
+                    json_data = w.DownloadString("https://api.locu.com/v1_0/venue/search/?has_menu=TRUE&country=Australia&region=qld&api_key=a1800a6c1db0a037df3a62ad194e3f937e0b25df");
                 }
-                catch (Exception) { }
+                catch (Exception) {  }
 
                 var data = JObject.Parse(json_data)["objects"];
 

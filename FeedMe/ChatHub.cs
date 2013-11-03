@@ -78,7 +78,7 @@ namespace FeedMe
     {
         private readonly static ConnectionMapping<string> _connections = new ConnectionMapping<string>();
 
-        List<string> Customers;
+        List<string> Customers = new List<string>();
 
         public void Send(string name, string message)
         {

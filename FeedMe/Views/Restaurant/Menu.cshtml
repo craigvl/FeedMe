@@ -1,0 +1,162 @@
+﻿@model IEnumerable<FeedMe.Models.RestaurantDetails>
+@using FeedMe.Models;
+@using System.Text;
+
+@{
+    ViewBag.Title = "Menu";
+}
+
+<h2>Menu</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.locality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.street_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.@long)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.has_menu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postal_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.website_url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resource_uri)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.locality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.street_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.@long)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.has_menu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postal_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.website_url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resource_uri)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+
+@foreach (RestaurantDetails item in Model)
+{
+    
+    @item.id
+    
+    <p></p>
+    
+    foreach (Menu _Menu in item.menus)
+    {
+      @Html.Raw("---- ")  @_Menu.menu_name
+    <p></p>
+    
+    
+        foreach (Section _Section in _Menu.sections)
+        {
+               
+             @Html.Raw("--------- ") @_Section.section_name<p></p>
+    
+            foreach (Subsection sub in _Section.subsections)
+            {
+                
+             @Html.Raw("------------ ") @sub.subsection_name<p></p>
+                
+                foreach (Content cont in sub.contents)
+                {
+                    <p></p>
+                     @cont.name @Html.Raw(" : ") @cont.description  @Html.Raw(" : ") @cont.price
+                    <p></p>
+                    
+    
+                    if (cont.option_groups != null)
+                        
+                    {
+    
+                    foreach (OptionGroup _group in cont.option_groups)
+                    {
+                        <p></p>
+                         @_group.text
+    
+                        foreach (Option _opt in _group.options)
+                        {
+                            <p></p>
+                            @_opt.name @Html.Raw(" : ") @_opt.price
+                            
+                        }
+                        
+                    }                
+    
+                    }
+                }            
+    
+            }
+    
+         
+        }
+    <p></p> 
+    }
+    <p></p>    
+    
+}
