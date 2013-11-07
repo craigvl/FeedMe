@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 
-namespace FeedMe
+namespace FeedMe.Hubs
 {
 
     public class ConnectionMapping<T>
